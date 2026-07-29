@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ challenge.title }} · Practice · PyTrail{% endblock %}
+{% block content %}
+<section class="practice-layout">
+  <aside class="lesson-rail">
+    <p class="rail-label">Challenges</p>
+    <ol>
+      {% for item in challenges %}
+      <li class="{% if item.id == challenge.id %}active{% endif %}">
+        <a href="{{ url_for('practice', challenge_id=item.id) }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    </ol>
+  </aside>
+
+  <article class="lesson-panel practice-panel"
+           data-challenge='{{ challenge | tojson }}'>
+    <p class="eyebrow">Practice challenge</p>
+    <h1>{{ challenge.title }}</h1>
+    <p>{{ challenge.prompt }}</p>
+
+    <label class="editor-label" for="code-editor">Your code</label>
+    <textarea id="code-editor" spellcheck="false">{{ challenge.starter }}</textarea>
+
+    <div class="cta-row">
+      <button type="button" class="btn primary" id="run-tests">Run tests</button>
+      <button type="button" class="btn ghost" id="show-hint">Hint</button>
+      <button type="button" class="btn ghost" id="show-solution">Show solution</button>
+    </div>
+
+    <p id="hint-box" class="tip" hidden><strong>Hint:</strong> {{ challenge.hint }}</p>
+    <div id="test-results" class="test-results" hidden></div>
+  </article>
+</section>
+{% endblock %}
