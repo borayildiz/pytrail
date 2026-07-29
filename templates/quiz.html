@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Quiz · {{ module.title }} · PyTrail{% endblock %}
+{% block content %}
+<section class="quiz-page" data-module="{{ module.id }}">
+  <div class="section-head">
+    <h1>{{ module.title }} quiz</h1>
+    <p>Check what stuck. You can retry anytime.</p>
+  </div>
+
+  <form id="quiz-form" class="quiz-form">
+    {% for item in module.quiz %}
+    {% set qindex = loop.index0 %}
+    <fieldset class="quiz-card" data-answer="{{ item.answer }}">
+      <legend>{{ loop.index }}. {{ item.q }}</legend>
+      {% for choice in item.choices %}
+      <label>
+        <input type="radio" name="q{{ qindex }}" value="{{ loop.index0 }}" required />
+        <span>{{ choice }}</span>
+      </label>
+      {% endfor %}
+    </fieldset>
+    {% endfor %}
+    <div class="cta-row">
+      <button type="submit" class="btn primary">Check answers</button>
+      <a class="btn ghost" href="{{ url_for('learn', module_id=module.id) }}">Back to lessons</a>
+    </div>
+  </form>
+
+  <div id="quiz-result" class="quiz-result" hidden></div>
+</section>
+{% endblock %}
