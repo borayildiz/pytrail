@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }} · {{ module.title }} · PyTrail{% endblock %}
+{% block content %}
+<section class="lesson-layout">
+  <aside class="lesson-rail">
+    <p class="rail-label">{{ module.title }}</p>
+    <ol>
+      {% for item in module.lessons %}
+      <li class="{% if item.id == lesson.id %}active{% endif %}">
+        <a href="{{ url_for('learn', module_id=module.id, lesson_id=item.id) }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+      <li class="quiz-link">
+        <a href="{{ url_for('quiz', module_id=module.id) }}">Module quiz</a>
+      </li>
+    </ol>
+  </aside>
+
+  <article class="lesson-panel" data-complete-module="{{ module.id }}" data-complete-lesson="{{ lesson.id }}">
+    <p class="eyebrow">{{ module.title }} · {{ lesson.minutes }} min</p>
+    <h1>{{ lesson.title }}</h1>
+    {% for paragraph in lesson.body %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+
+    <div class="code-block">
+      <div class="code-toolbar">
+        <span>example.py</span>
+        <button type="button" class="btn tiny ghost" data-copy>Copy</button>
+      </div>
+      <pre><code>{{ lesson.code }}</code></pre>
+    </div>
+
+    <div class="output-block">
+      <span>Output</span>
+      <pre>{{ lesson.output }}</pre>
+    </div>
+
+    <p class="tip"><strong>Tip:</strong> {{ lesson.tip }}</p>
+
+    <div class="lesson-nav">
+      {% if prev_id %}
+      <a class="btn ghost" href="{{ url_for('learn', module_id=module.id, lesson_id=prev_id) }}">Previous</a>
+      {% else %}
+      <span></span>
+      {% endif %}
+      <button type="button" class="btn primary" id="mark-done">Mark complete</button>
+      {% if next_id %}
+      <a class="btn" href="{{ url_for('learn', module_id=module.id, lesson_id=next_id) }}">Next lesson</a>
+      {% else %}
+      <a class="btn" href="{{ url_for('quiz', module_id=module.id) }}">Take the quiz</a>
+      {% endif %}
+    </div>
+  </article>
+</section>
+{% endblock %}
