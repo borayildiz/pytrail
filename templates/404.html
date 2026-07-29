@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Not found · PyTrail{% endblock %}
+{% block content %}
+<section class="empty-state">
+  <h1>Trail marker missing</h1>
+  <p>That page isn’t on the map. Head back to the path and keep learning.</p>
+  <a class="btn primary" href="{{ url_for('home') }}">Back to PyTrail</a>
+</section>
+{% endblock %}
