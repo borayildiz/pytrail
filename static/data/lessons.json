@@ -1,0 +1,286 @@
+{
+  "modules": [
+    {
+      "id": "basics",
+      "title": "Python Basics",
+      "blurb": "Values, variables, and your first programs.",
+      "lessons": [
+        {
+          "id": "hello",
+          "title": "Hello, Python",
+          "minutes": 5,
+          "body": [
+            "Python is a clear, readable language used for web apps, data, automation, and AI.",
+            "The classic first program prints a message to the screen."
+          ],
+          "code": "print(\"Hello, PyTrail!\")",
+          "output": "Hello, PyTrail!",
+          "tip": "print() is a built-in function. Text inside quotes is a string."
+        },
+        {
+          "id": "variables",
+          "title": "Variables & Types",
+          "minutes": 8,
+          "body": [
+            "A variable stores a value under a name. Python figures out the type for you.",
+            "Common types: int, float, str, and bool."
+          ],
+          "code": "name = \"Ada\"\nage = 36\npi = 3.14\nis_coder = True\nprint(name, age, pi, is_coder)",
+          "output": "Ada 36 3.14 True",
+          "tip": "Use snake_case for variable names: total_score, not totalScore."
+        },
+        {
+          "id": "strings",
+          "title": "Working with Strings",
+          "minutes": 7,
+          "body": [
+            "Strings can be combined (concatenated) and formatted with f-strings.",
+            "f-strings let you embed expressions inside curly braces."
+          ],
+          "code": "city = \"Lisbon\"\nyear = 2026\nprint(f\"Coding from {city} in {year}\")\nprint(\"Py\" + \"thon\".upper())",
+          "output": "Coding from Lisbon in 2026\nPYTHON",
+          "tip": "Prefer f-strings over + for readable text assembly."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which call prints text to the console?",
+          "choices": ["echo(\"hi\")", "print(\"hi\")", "console.log(\"hi\")", "say(\"hi\")"],
+          "answer": 1
+        },
+        {
+          "q": "What type is 3.14?",
+          "choices": ["int", "str", "float", "bool"],
+          "answer": 2
+        },
+        {
+          "q": "Which is a valid f-string?",
+          "choices": ["f\"Hi {name}\"", "\"Hi {name}\"f", "fmt\"Hi {name}\"", "$\"Hi {name}\""],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "title": "Control Flow",
+      "blurb": "Make decisions and repeat work with if and loops.",
+      "lessons": [
+        {
+          "id": "conditionals",
+          "title": "If / Elif / Else",
+          "minutes": 8,
+          "body": [
+            "Conditionals run code only when a condition is true.",
+            "Compare with ==, !=, <, >, <=, >=. Combine with and, or, not."
+          ],
+          "code": "score = 82\nif score >= 90:\n    grade = \"A\"\nelif score >= 80:\n    grade = \"B\"\nelse:\n    grade = \"C\"\nprint(grade)",
+          "output": "B",
+          "tip": "Indentation (usually 4 spaces) defines blocks in Python."
+        },
+        {
+          "id": "loops",
+          "title": "For & While Loops",
+          "minutes": 9,
+          "body": [
+            "for walks through a sequence. while repeats until a condition fails.",
+            "range(n) gives numbers from 0 up to (but not including) n."
+          ],
+          "code": "for i in range(3):\n    print(f\"step {i}\")\nn = 3\nwhile n > 0:\n    print(n)\n    n -= 1",
+          "output": "step 0\nstep 1\nstep 2\n3\n2\n1",
+          "tip": "Avoid infinite while loops — always update the condition."
+        },
+        {
+          "id": "break-continue",
+          "title": "Break & Continue",
+          "minutes": 6,
+          "body": [
+            "break exits a loop early. continue skips to the next iteration.",
+            "Use them sparingly when they make intent clearer."
+          ],
+          "code": "for n in range(1, 6):\n    if n == 3:\n        continue\n    if n == 5:\n        break\n    print(n)",
+          "output": "1\n2\n4",
+          "tip": "3 is skipped by continue; 5 never prints because of break."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What does elif mean?",
+          "choices": ["else if", "end if", "early if", "equal if"],
+          "answer": 0
+        },
+        {
+          "q": "What does range(3) produce?",
+          "choices": ["1, 2, 3", "0, 1, 2", "0, 1, 2, 3", "3, 2, 1"],
+          "answer": 1
+        },
+        {
+          "q": "What does continue do?",
+          "choices": ["Ends the program", "Exits the loop", "Skips to the next iteration", "Restarts Python"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "structures",
+      "title": "Data Structures",
+      "blurb": "Lists, dictionaries, and the collections you’ll use every day.",
+      "lessons": [
+        {
+          "id": "lists",
+          "title": "Lists",
+          "minutes": 8,
+          "body": [
+            "A list is an ordered, mutable collection. Index from 0.",
+            "append adds an item; slicing copies a stretch of items."
+          ],
+          "code": "langs = [\"Python\", \"Rust\", \"Go\"]\nlangs.append(\"SQL\")\nprint(langs[0])\nprint(langs[-1])\nprint(langs[1:3])",
+          "output": "Python\nSQL\n['Rust', 'Go']",
+          "tip": "Negative indexes count from the end: -1 is the last item."
+        },
+        {
+          "id": "dicts",
+          "title": "Dictionaries",
+          "minutes": 8,
+          "body": [
+            "Dicts map keys to values. Lookups by key are fast and readable.",
+            "Keys are usually strings; values can be any type."
+          ],
+          "code": "user = {\"name\": \"Maya\", \"level\": 2}\nuser[\"level\"] = 3\nprint(user[\"name\"])\nprint(user.get(\"email\", \"missing\"))",
+          "output": "Maya\nmissing",
+          "tip": ".get(key, default) avoids KeyError when a key might be absent."
+        },
+        {
+          "id": "comprehensions",
+          "title": "List Comprehensions",
+          "minutes": 7,
+          "body": [
+            "Comprehensions build lists in one expressive line.",
+            "They can include a filter with if."
+          ],
+          "code": "nums = [1, 2, 3, 4, 5]\nsquares = [n * n for n in nums]\nevens = [n for n in nums if n % 2 == 0]\nprint(squares)\nprint(evens)",
+          "output": "[1, 4, 9, 16, 25]\n[2, 4]",
+          "tip": "Keep comprehensions short — long ones are clearer as normal loops."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How do you add an item to a list?",
+          "choices": ["list.add(x)", "list.append(x)", "list.push(x)", "list.insert_end(x)"],
+          "answer": 1
+        },
+        {
+          "q": "Dicts store data as…",
+          "choices": ["rows", "key–value pairs", "only numbers", "fixed tuples"],
+          "answer": 1
+        },
+        {
+          "q": "What is [n for n in range(3)]?",
+          "choices": ["[1, 2, 3]", "[0, 1, 2]", "(0, 1, 2)", "{0, 1, 2}"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions",
+      "blurb": "Package logic into reusable, testable pieces.",
+      "lessons": [
+        {
+          "id": "define",
+          "title": "Defining Functions",
+          "minutes": 8,
+          "body": [
+            "def names a function. Parameters receive inputs; return sends a result back.",
+            "Call the function by writing its name followed by parentheses."
+          ],
+          "code": "def greet(name):\n    return f\"Welcome, {name}!\"\n\nprint(greet(\"PyTrail\"))\nprint(greet(\"friend\"))",
+          "output": "Welcome, PyTrail!\nWelcome, friend!",
+          "tip": "Functions should do one clear job and return early when possible."
+        },
+        {
+          "id": "defaults",
+          "title": "Defaults & Keyword Args",
+          "minutes": 7,
+          "body": [
+            "Default parameter values make calls optional and friendlier.",
+            "Keyword arguments document intent at the call site."
+          ],
+          "code": "def power(base, exp=2):\n    return base ** exp\n\nprint(power(5))\nprint(power(2, exp=10))",
+          "output": "25\n1024",
+          "tip": "Put parameters with defaults after required ones."
+        },
+        {
+          "id": "scope",
+          "title": "Scope Basics",
+          "minutes": 6,
+          "body": [
+            "Names assigned inside a function are local unless declared otherwise.",
+            "Prefer passing values in and returning results over global state."
+          ],
+          "code": "rate = 1.1\n\ndef with_tax(price):\n    return price * rate\n\nprint(with_tax(100))",
+          "output": "110.00000000000001",
+          "tip": "Floats are approximate — for money, prefer decimal later on."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which keyword defines a function?",
+          "choices": ["func", "function", "def", "lambda_only"],
+          "answer": 2
+        },
+        {
+          "q": "What does return do?",
+          "choices": ["Prints a value", "Sends a value back to the caller", "Deletes a variable", "Ends the file"],
+          "answer": 1
+        },
+        {
+          "q": "In def power(base, exp=2), exp is…",
+          "choices": ["Required", "A default parameter", "Invalid syntax", "Always 2 forever"],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "challenges": [
+    {
+      "id": "sum-list",
+      "title": "Sum a list",
+      "prompt": "Complete the function so it returns the sum of all numbers in nums.",
+      "starter": "def total(nums):\n    # TODO: return the sum\n    ",
+      "solution": "def total(nums):\n    return sum(nums)",
+      "tests": [
+        {"call": "total([1, 2, 3])", "expected": "6"},
+        {"call": "total([])", "expected": "0"},
+        {"call": "total([10, -2])", "expected": "8"}
+      ],
+      "hint": "Python’s built-in sum() works on any iterable of numbers."
+    },
+    {
+      "id": "fizz",
+      "title": "Label the number",
+      "prompt": "Return \"fizz\" if n is divisible by 3, \"buzz\" if by 5, \"fizzbuzz\" if by both, otherwise the number as a string.",
+      "starter": "def label(n):\n    # TODO\n    ",
+      "solution": "def label(n):\n    if n % 15 == 0:\n        return \"fizzbuzz\"\n    if n % 3 == 0:\n        return \"fizz\"\n    if n % 5 == 0:\n        return \"buzz\"\n    return str(n)",
+      "tests": [
+        {"call": "label(3)", "expected": "fizz"},
+        {"call": "label(5)", "expected": "buzz"},
+        {"call": "label(15)", "expected": "fizzbuzz"},
+        {"call": "label(7)", "expected": "7"}
+      ],
+      "hint": "Check the combined case (15) before the individual cases."
+    },
+    {
+      "id": "count-vowels",
+      "title": "Count vowels",
+      "prompt": "Return how many vowels (a, e, i, o, u) appear in text, ignoring case.",
+      "starter": "def count_vowels(text):\n    # TODO\n    ",
+      "solution": "def count_vowels(text):\n    vowels = \"aeiou\"\n    count = 0\n    for ch in text.lower():\n        if ch in vowels:\n            count = count + 1\n    return count",
+      "tests": [
+        {"call": "count_vowels(\"PyTrail\")", "expected": "2"},
+        {"call": "count_vowels(\"SKY\")", "expected": "0"},
+        {"call": "count_vowels(\"Education\")", "expected": "5"}
+      ],
+      "hint": "Lowercase the text, then loop and count characters found in \"aeiou\"."
+    }
+  ]
+}
