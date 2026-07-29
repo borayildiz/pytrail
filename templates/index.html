@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}PyTrail — Learn Python{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="brand-mark">PyTrail</p>
+    <h1>Learn Python by walking a clear path.</h1>
+    <p class="lede">Short lessons, quick quizzes, and hands-on challenges — progress saved in your browser.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#path">Start the path</a>
+      <a class="btn ghost" href="{{ url_for('practice') }}">Try a challenge</a>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <pre class="hero-code"><code><span class="kw">def</span> <span class="fn">trail</span>(steps):
+    <span class="kw">for</span> step <span class="kw">in</span> steps:
+        <span class="fn">print</span>(step)
+    <span class="kw">return</span> <span class="str">"you did it"</span>
+
+trail([<span class="str">"read"</span>, <span class="str">"try"</span>, <span class="str">"quiz"</span>])</code></pre>
+  </div>
+</section>
+
+<section class="path" id="path">
+  <div class="section-head">
+    <h2>Your learning path</h2>
+    <p>{{ modules|length }} modules · {{ challenge_count }} practice challenges</p>
+  </div>
+  <ol class="module-list">
+    {% for module in modules %}
+    <li class="module-item" data-module="{{ module.id }}">
+      <div class="module-meta">
+        <span class="module-index">{{ "%02d"|format(loop.index) }}</span>
+        <div>
+          <h3><a href="{{ url_for('learn', module_id=module.id) }}">{{ module.title }}</a></h3>
+          <p>{{ module.blurb }}</p>
+        </div>
+      </div>
+      <div class="module-actions">
+        <span class="pill">{{ module.lessons|length }} lessons</span>
+        <a class="btn small" href="{{ url_for('learn', module_id=module.id) }}">Open</a>
+        <a class="btn small ghost" href="{{ url_for('quiz', module_id=module.id) }}">Quiz</a>
+      </div>
+      <div class="module-bar"><span data-bar="{{ module.id }}"></span></div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}
